@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:OsuMusicPlayer.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="300"
+        Width="450" Height="300" Padding="28"
+        CanResize="False"
+        x:Class="OsuMusicPlayer.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="OsuMusicPlayer">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+  <Window.Background>
+    <ImageBrush Stretch="UniformToFill" Source="{Binding BackgroundImage}" Opacity="0.3"  />
+  </Window.Background>
+
+  <StackPanel Spacing="14" VerticalAlignment="Center">
+    <TextBlock FontWeight="Bold" FontSize="24" Text="{Binding NowPlayingText}" HorizontalAlignment="Center" />
+    <Slider Value="{Binding SliderValue}" />
+    <Grid ColumnDefinitions="Auto, Auto, Auto" HorizontalAlignment="Center">
+      <Button Content="&lt; " Command="{Binding OnPreviousButtonClicked}" Grid.Column="0" />
+      <Button Content="{Binding PausePlayButtonContent}" Command="{Binding OnPausePlayButtonClicked}" Grid.Column="1" />
+      <Button Content=">" Command="{Binding OnNextButtonClicked}" Grid.Column="2"  />
+    </Grid>
+  </StackPanel>
+
+</Window>
